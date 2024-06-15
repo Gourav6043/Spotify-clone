@@ -1,0 +1,103 @@
+.App {
+  display: flex;
+  justify-content: space-evenly;
+  font-family: Arial, sans-serif;
+  color: white;
+  height: 100vh;
+}
+
+.App-header {
+  background-color: transparent;
+  padding-top: 20px;
+  color: #ffffff;
+  text-align: center;
+  width: 15%;
+}
+
+.Logo {
+  font-size: 24px;
+}
+
+.profile-pic {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.App-main {
+  display: flex;
+  padding-top: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 35%;
+}
+
+.App-nav {
+  padding: 20px;
+}
+
+.App-nav-button {
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container {
+  padding: 0 20px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #000;
+  background-color: #9693933a;
+  padding: 10px 30px 10px 10px;
+  transition: background-color 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #ccc;
+}
+
+.search-input:focus {
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 0 2px #ccc;
+}
+
+.search-icon {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  font-size: 18px;
+  color: #666;
+  pointer-events: none;
+}
+
+.player-side {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding-right: 40px;
+  align-items: center;
+}
+
+.Player {
+  width: 340px;
+}
+
+.App-content {
+  width: 100%;
+}

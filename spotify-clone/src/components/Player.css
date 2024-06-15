@@ -1,0 +1,88 @@
+.Player-song-cover {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  margin: 0 20px;
+}
+
+.Player-song-cover img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.Player-song-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.Player-song-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px ;
+}
+
+.Player-song-artist {
+  font-size: 15px;
+  color: #d5d9d5;
+  margin: 0;
+}
+
+.Player-controls {
+  display: flex;
+  justify-content: space-between;
+  padding:0 20px;
+}
+
+.Player-control {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  margin: 0 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.play-pause-control {
+  background-color: white;
+  color: black;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.Song-progress {
+  padding: 20px;
+}
+
+.Song-progress input[type="range"] {
+  width: 100%;
+  height: 20px;
+  margin: 0 ;
+}
+
+.player-menu, .volume-button {
+  background-color: #c8d6c8;
+  border-radius: 50%;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.volume-container {
+  position: relative;
+}
+
+.volume-control {
+  position: absolute;
+  top: -30px;
+  right: -60px;
+  padding: 10px;
+  border-radius: 10px;
+}

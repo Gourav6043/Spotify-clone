@@ -1,0 +1,11 @@
+.TopTracks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .TopTracks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }

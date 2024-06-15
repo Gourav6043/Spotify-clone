@@ -1,0 +1,48 @@
+.Song {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: 0 20px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .Song:hover {
+    background-color: #9693933a;
+  }
+  
+  .Song-cover {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 20px 10px 20px 0;
+  }
+  
+  .Song-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .Song-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .Song-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .Song-artist {
+    font-size: 14px;
+    color: #d5d9d5;
+    margin: 0;
+  }
+
+  .song-duration {
+    padding-left: 40px;
+  }
