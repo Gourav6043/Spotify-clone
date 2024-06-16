@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
-import Player from './components/Player';
-import TopTracks from './components/TopTracks';
-import ForYou from './components/ForYou';
 import { getSongs } from './api/songs';
 import ProfilePic from './images/profile-pic.jpg';
+import Navigation from './components/Navigation';
+import SearchBar from './components/SearchBar';
+import TopTracks from './components/TopTracks';
+import ForYou from './components/ForYou';
+import Player from './components/Player';
 
 function App() {
   const [songs, setSongs] = useState([]);
@@ -18,22 +20,26 @@ function App() {
 
   useEffect(() => {
     const fetchSongs = async () => {
-      const response = await getSongs();
-      const songsWithDurations = await Promise.all(
-        response.data.map(async (song) => {
-          const audio = new Audio(song.url);
-          await new Promise((resolve) => {
-            audio.addEventListener('loadedmetadata', () => {
-              resolve();
+      try {
+        const response = await getSongs();
+        const songsWithDurations = await Promise.all(
+          response.data.map(async (song) => {
+            const audio = new Audio(song.url);
+            await new Promise((resolve) => {
+              audio.addEventListener('loadedmetadata', () => {
+                resolve();
+              });
             });
-          });
-          return { ...song, duration: audio.duration };
-        })
-      );
-      setSongs(songsWithDurations);
-      setCurrentSong(songsWithDurations[0]);
-      setSongDurations(songsWithDurations.reduce((acc, song) => ({ ...acc, [song.id]: song.duration }), {}));
-      setBackgroundColor(songsWithDurations[0].accent);
+            return { ...song, duration: audio.duration };
+          })
+        );
+        setSongs(songsWithDurations);
+        setCurrentSong(songsWithDurations[0]);
+        setSongDurations(songsWithDurations.reduce((acc, song) => ({ ...acc, [song.id]: song.duration }), {}));
+        setBackgroundColor(songsWithDurations[0].accent);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchSongs();
   }, []);
@@ -64,37 +70,12 @@ function App() {
     <div className="App" style={{ backgroundColor }} >
       <header className="App-header">
         <h1 className="Logo"><i className="fa-brands fa-spotify"/> Spotify</h1>
-        <img src={ProfilePic} alt="Profile Picture" className="profile-pic" />
+        <img src={ProfilePic} alt="Profile" className="profile-pic" />
       </header>
 
       <main className="App-main">
-        <div className="App-nav">
-          <button
-            className="App-nav-button"
-            onClick={() => handleToggle(true)}
-            style={{ color: showForYou? '#ffffff' : '#d5d9d5' }}
-          >
-            For You
-          </button>
-          <button
-            className="App-nav-button"
-            onClick={() => handleToggle(false)}
-            style={{ color:!showForYou? '#ffffff' : '#d5d9d5' }}
-          >
-            Top Tracks
-          </button>
-        </div>
-
-        <div className="search-container">
-          <input
-            type="search"
-            value={searchQuery}
-            onChange={handleSearch}
-            className="search-input"
-            placeholder="Search Song, Artist"
-          />
-          <i className="fas fa-search search-icon" />
-        </div>
+        <Navigation onToggle={handleToggle} showForYou={showForYou} />
+        <SearchBar onSearch={handleSearch} />
 
         <div className="App-content">
           {showForYou? (

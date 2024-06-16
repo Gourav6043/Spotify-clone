@@ -6,7 +6,6 @@ const Player = ({songList,  song, isPlaying, setIsPlaying, setCurrentSong}) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
-  const volumeControlRef = useRef(null);
   const [volume, setVolume] = useState(1);
   const [showVolumeControl, setShowVolumeControl] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -70,10 +69,6 @@ const Player = ({songList,  song, isPlaying, setIsPlaying, setCurrentSong}) => {
     audioRef.current.currentTime = seekTime;
   };
 
-  const handleVolumeClick = () => {
-    setShowVolumeControl(!showVolumeControl);
-  };
-
   const handleVolumeChange = (event) => {
     setVolume(event.target.value);
     audioRef.current.volume = event.target.value;
@@ -123,7 +118,7 @@ const Player = ({songList,  song, isPlaying, setIsPlaying, setCurrentSong}) => {
         </div>
         
         <div className="volume-container">
-          <button onClick={handleVolumeClick} className="volume-button">
+          <button onClick={ () => setShowVolumeControl(!showVolumeControl)} className="volume-button">
             {volume == 0? (
               <i className="fa-solid fa-volume-xmark"/>
             ) : volume < 0.5? (
@@ -134,7 +129,6 @@ const Player = ({songList,  song, isPlaying, setIsPlaying, setCurrentSong}) => {
           </button>
           {showVolumeControl && (
             <div
-              ref={volumeControlRef}
               className="volume-control"
               onMouseLeave={handleVolumeMouseLeave}
             >
