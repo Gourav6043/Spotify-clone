@@ -8,11 +8,13 @@ import SearchBar from './components/SearchBar';
 import TopTracks from './components/TopTracks';
 import ForYou from './components/ForYou';
 import Player from './components/Player';
+import Song from './components/Song';
 
 function App() {
   const [songs, setSongs] = useState([]);
   const [currentSong, setCurrentSong] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const [showForYou, setShowForYou] = useState(true);
   const [songDurations, setSongDurations] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
@@ -48,6 +50,7 @@ function App() {
     setCurrentSong(song);
     setIsPlaying(true);
     setBackgroundColor(currentSong.accent);
+    setShowMenu(false);
   };
   
   const handleToggle = (showForYou) => {
@@ -71,7 +74,20 @@ function App() {
       <header className="App-header">
         <h1 className="Logo"><i className="fa-brands fa-spotify"/> Spotify</h1>
         <img src={ProfilePic} alt="Profile" className="profile-pic" />
+        <button className="menu-button" onClick={() => setShowMenu(!showMenu)}>
+          <i className="fa-solid fa-bars"/>
+        </button>
       </header>
+
+      {showMenu && (
+        <div className="menu-overlay">
+          <ul className="song-list">
+            {songs.map((song) => (
+              <Song key={song.id} song={song} onSongChange={handleSongChange} songDurations={songDurations} />
+            ))}
+          </ul>
+        </div>
+      )}
 
       <main className="App-main">
         <Navigation onToggle={handleToggle} showForYou={showForYou} />
@@ -97,6 +113,7 @@ function App() {
             />
           )}
       </section>
+
     </div>
   );
 }
